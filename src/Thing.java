@@ -1,4 +1,3 @@
-
 public class Thing {
 	String kind;
 	String when;
@@ -6,7 +5,6 @@ public class Thing {
 	int much;
 	
 	public Thing() {
-		
 	}
 	
 	public Thing(String kind, String when, int many, int much) {
@@ -17,6 +15,6 @@ public class Thing {
 	}
 	
 	public void printInfo() {
-		System.out.println("kind:" + kind + " when:" + when + "many:" + many + "price:" + much);
+		System.out.println("kind:" + kind + " when:" + when + " many:" + many + " price:" + much);
 	}
 }

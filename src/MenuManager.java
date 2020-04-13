@@ -11,7 +11,7 @@ public class MenuManager {
 			System.out.println(" 1. Add thing");
 			System.out.println(" 2. Delete thing");
 			System.out.println(" 3. Edit thing");
-			System.out.println(" 4. View thing");
+			System.out.println(" 4. View things");
 			System.out.println(" 5. Exit");
 			System.out.println("Select one number between 1 - 5:");
 			num = input.nextInt();
@@ -25,7 +25,7 @@ public class MenuManager {
 				thingmanager.editthing();
 			}
 			if ( num == 4) {
-				thingmanager.viewthing();
+				thingmanager.viewthings();
 			}
 			else {
 				continue;
