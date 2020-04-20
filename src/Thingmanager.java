@@ -1,26 +1,43 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import thing.FutureThing;
+import thing.Thing;
+
 public class Thingmanager {
 	ArrayList<Thing> things = new ArrayList<Thing>();
 	Scanner input;
-	
 	Thingmanager(Scanner input) {
 		this.input = input;
-		
-		
 	}
+	
 	public void addthing() {
-		Thing thing = new Thing();
-		System.out.print("What kind?");
-		thing.kind = input.next();
-		System.out.print("When?");
-		thing.when = input.next();
-		System.out.print("How many?");
-		thing.many = input.nextInt();
-		System.out.print("How much?");
-		thing.much = input.nextInt();
-		things.add(thing);
+		int detail = 0;
+		Thing thing;
+			while (detail !=1 && detail !=2) {
+			System.out.println("Select Thing Detail:");
+			System.out.println("1 for Past:");
+			System.out.println("2 for Future:");
+			System.out.println("Select num for Thing detail between 1 and 2:");
+			detail = input.nextInt();
+			if (detail == 1) {
+				thing = new Thing();
+				thing.getuserInput(input);
+				things.add(thing);
+				break;
+				
+			}
+			else if (detail == 2) {
+				thing = new FutureThing();
+				thing.getuserInput(input);
+				things.add(thing);
+				break;
+				
+			}
+			else {
+				System.out.print("Select num for Thing detail between 1 and 2:");
+			}
+		}
 	}
 	
 	public void deletething() {
@@ -28,7 +45,7 @@ public class Thingmanager {
 		String kind = input.next();
 		int index = -1;
 		for (int i = 0; i<things.size(); i++) {
-			if (things.get(i).kind.equals(kind)) {
+			if (things.get(i).getKind().equals(kind)) {
 				index = i;
 				break;
 			}
@@ -47,7 +64,7 @@ public class Thingmanager {
 		String kind = input.next();
 		for (int i = 0; i<things.size(); i++) {
 			Thing thing = things.get(i);
-			if (thing.kind.equals(kind)) {
+			if (thing.getKind().equals(kind)) {
 				int num = -1;
 				while (num != 5) {
 					System.out.println("** Select Edit menu **");
@@ -60,19 +77,23 @@ public class Thingmanager {
 					num = input.nextInt();
 					if ( num == 1) {
 						System.out.print("What kind?");
-						thing.kind = input.next();
+						kind = input.next();
+						thing.setKind(kind);
 					}
 					if ( num == 2) {
 						System.out.print("When?");
-						thing.when = input.next();
+						String when = input.next();
+						thing.setWhen(when);
 					}
 					if ( num == 3) {
 						System.out.print("How many?");
-						thing.many = input.nextInt();
+						int many = input.nextInt();
+						thing.setMany(many);
 					}
 					if ( num == 4) {
 						System.out.print("How much?");
-						thing.much = input.nextInt();
+						int much = input.nextInt();
+						thing.setMuch(much);
 					}
 					else {
 						continue;
@@ -84,11 +105,10 @@ public class Thingmanager {
 	}
 	
 	public void viewthings() {
+		System.out.println("# of registered things:" + things.size());
 		for (int i = 0; i<things.size(); i++) {
 			things.get(i).printInfo();
 		}
-
-		
 	}
 
 }
