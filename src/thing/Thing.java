@@ -12,8 +12,19 @@ public class Thing {
 	
 	public Thing() {
 	}
+	public Thing(ThingDetail detail) {
+		this.detail=detail;
+	}
 	
 	public Thing(String kind, String when, int many, int much) {
+		this.kind = kind;
+		this.when = when;
+		this.many = many;
+		this.much = much;
+	}
+	
+	public Thing(ThingDetail detail,String kind, String when, int many, int much) {
+		this.detail = detail;
 		this.kind = kind;
 		this.when = when;
 		this.many = many;
@@ -61,7 +72,20 @@ public class Thing {
 	}
 	
 	public void printInfo() {
-		System.out.println("kind:" + kind + " when:" + when + " many:" + many + " price:" + much);
+		String sdetail = "none";
+		switch(this.detail) {
+		case Past:
+			sdetail = "Past. ";
+			break;
+		case Future:
+			sdetail = "Future. ";
+			break;
+		case Electric:
+			sdetail = "Electric. ";
+			break;
+		default:
+		}
+		System.out.println("detail:" + sdetail + "kind:" + kind + " when:" + when + " many:" + many + " price:" + much);
 	}
 	
 	public void getuserInput(Scanner input) {

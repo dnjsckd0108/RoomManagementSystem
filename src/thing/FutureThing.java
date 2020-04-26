@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class FutureThing extends Thing {
 	
+		public FutureThing(ThingDetail detail) {
+			super(detail);
+		}
+		
 		public void getuserInput(Scanner input) {
 			System.out.print("What kind?");
 			String kind = input.next();

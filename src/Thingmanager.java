@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import thing.ElectricThing;
 import thing.FutureThing;
 import thing.Thing;
+import thing.ThingDetail;
 
 public class Thingmanager {
 	ArrayList<Thing> things = new ArrayList<Thing>();
@@ -14,21 +16,29 @@ public class Thingmanager {
 	public void addthing() {
 		int detail = 0;
 		Thing thing;
-			while (detail !=1 && detail !=2) {
+			while (detail !=1 && detail !=2 && detail !=3) {
 			System.out.println("Select Thing Detail:");
 			System.out.println("1 for Past:");
 			System.out.println("2 for Future:");
-			System.out.println("Select num for Thing detail between 1 and 2:");
+			System.out.println("3 Electric:");
+			System.out.println("Select num for Thing detail  1 to 3:");
 			detail = input.nextInt();
 			if (detail == 1) {
-				thing = new Thing();
+				thing = new Thing(ThingDetail.Past);
 				thing.getuserInput(input);
 				things.add(thing);
 				break;
 				
 			}
 			else if (detail == 2) {
-				thing = new FutureThing();
+				thing = new FutureThing(ThingDetail.Future);
+				thing.getuserInput(input);
+				things.add(thing);
+				break;
+				
+			}
+			else if (detail == 3) {
+				thing = new ElectricThing(ThingDetail.Electric);
 				thing.getuserInput(input);
 				things.add(thing);
 				break;
@@ -112,4 +122,3 @@ public class Thingmanager {
 	}
 
 }
-
