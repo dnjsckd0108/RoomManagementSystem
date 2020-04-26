@@ -29,7 +29,7 @@ public class ElectricThing extends Thing {
 			answer = input.next().charAt(0);
 			if (answer == 'y' || answer == 'Y') {
 				System.out.print("how much:");
-				int much = input.nextInt();
+				int expensivemuch = input.nextInt();
 				this.setMuch(expensivemuch);
 				break;
 			}
