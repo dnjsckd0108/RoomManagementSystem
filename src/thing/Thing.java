@@ -2,13 +2,13 @@ package thing;
 
 import java.util.Scanner;
 
-public class Thing {
+public abstract class Thing implements Thinginput {
 	
 	protected ThingDetail detail = ThingDetail.Past;
-	protected String kind;
-	protected String when;
-	protected int many;
-	protected int much;
+	protected String thingkind;
+	protected String thingwhen;
+	protected int thingmany;
+	protected int thingmuch;
 	
 	public Thing() {
 	}
@@ -17,18 +17,18 @@ public class Thing {
 	}
 	
 	public Thing(String kind, String when, int many, int much) {
-		this.kind = kind;
-		this.when = when;
-		this.many = many;
-		this.much = much;
+		this.thingkind = kind;
+		this.thingwhen = when;
+		this.thingmany = many;
+		this.thingmuch = much;
 	}
 	
 	public Thing(ThingDetail detail,String kind, String when, int many, int much) {
 		this.detail = detail;
-		this.kind = kind;
-		this.when = when;
-		this.many = many;
-		this.much = much;
+		this.thingkind = kind;
+		this.thingwhen = when;
+		this.thingmany = many;
+		this.thingmuch = much;
 	}
 	
 	public ThingDetail getDetail() {
@@ -40,38 +40,63 @@ public class Thing {
 	}
 
 	public String getKind() {
-		return kind;
+		return thingkind;
 	}
 
 	public void setKind(String kind) {
-		this.kind = kind;
+		this.thingkind = kind;
 	}
 
 	public String getWhen() {
-		return when;
+		return thingwhen;
 	}
 
 	public void setWhen(String when) {
-		this.when = when;
+		this.thingwhen = when;
 	}
 
 	public int getMany() {
-		return many;
+		return thingmany;
 	}
 
 	public void setMany(int many) {
-		this.many = many;
+		this.thingmany = many;
 	}
 
 	public int getMuch() {
-		return much;
+		return thingmuch;
 	}
 
 	public void setMuch(int much) {
-		this.much = much;
+		this.thingmuch = much;
+	}
+	public abstract void printInfo();
+	
+	public void setKind(Scanner input) {
+		System.out.print("What kind?");
+		String thingkind = input.next();
+		this.setKind(thingkind);
 	}
 	
-	public void printInfo() {
+	public void setWhen(Scanner input) {
+		System.out.print("When?");
+		String when = input.next();
+		this.setWhen(when);
+	}
+	
+	public void setMany(Scanner input) {
+		System.out.print("How many?");
+		int many = input.nextInt();
+		this.setMany(many);
+	}
+	
+	public void setMuch(Scanner input) {
+		System.out.print("How much?");
+		int much = input.nextInt();
+		this.setMuch(much);
+	}
+	
+	public String getdetailString() {
 		String sdetail = "none";
 		switch(this.detail) {
 		case Past:
@@ -85,24 +110,8 @@ public class Thing {
 			break;
 		default:
 		}
-		System.out.println("detail:" + sdetail + "kind:" + kind + " when:" + when + " many:" + many + " price:" + much);
+		return sdetail;
 	}
 	
-	public void getuserInput(Scanner input) {
-		System.out.print("What kind?");
-		String kind = input.next();
-		this.setKind(kind);
-		
-		System.out.print("When?");
-		String when = input.next();
-		this.setWhen(when);
-		
-		System.out.print("How many?");
-		int many = input.nextInt();
-		this.setMany(many);
-		
-		System.out.print("How much?");
-		int much = input.nextInt();
-		this.setMuch(much);
-	}
+	
 }

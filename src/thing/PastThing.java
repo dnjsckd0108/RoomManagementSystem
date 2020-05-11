@@ -2,15 +2,15 @@ package thing;
 
 import java.util.Scanner;
 
-public class ElectricThing extends SpecialThing {
+public class PastThing extends Thing {
 	
-	public ElectricThing(ThingDetail detail) {
+	public PastThing(ThingDetail detail) {
 		super(detail);
 	}
-
+	
 	public void getuserInput(Scanner input) {
 		setKind(input);
-		setThingWhenwithYN(input);
+		setWhen(input);
 		setMany(input);
 		setMuch(input);
 	}
