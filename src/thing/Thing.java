@@ -2,6 +2,8 @@ package thing;
 
 import java.util.Scanner;
 
+import exception.WhenFormatException;
+
 public abstract class Thing implements Thinginput {
 	
 	protected ThingDetail detail = ThingDetail.Past;
@@ -16,19 +18,19 @@ public abstract class Thing implements Thinginput {
 		this.detail=detail;
 	}
 	
-	public Thing(String kind, String when, int many, int much) {
-		this.thingkind = kind;
-		this.thingwhen = when;
-		this.thingmany = many;
-		this.thingmuch = much;
+	public Thing(String thingkind, String thingwhen, int thingmany, int thingmuch) {
+		this.thingkind = thingkind;
+		this.thingwhen = thingwhen;
+		this.thingmany = thingmany;
+		this.thingmuch = thingmuch;
 	}
 	
-	public Thing(ThingDetail detail,String kind, String when, int many, int much) {
+	public Thing(ThingDetail detail,String thingkind, String thingwhen, int thingmany, int thingmuch) {
 		this.detail = detail;
-		this.thingkind = kind;
-		this.thingwhen = when;
-		this.thingmany = many;
-		this.thingmuch = much;
+		this.thingkind = thingkind;
+		this.thingwhen = thingwhen;
+		this.thingmany = thingmany;
+		this.thingmuch = thingmuch;
 	}
 	
 	public ThingDetail getDetail() {
@@ -39,61 +41,72 @@ public abstract class Thing implements Thinginput {
 		this.detail = detail;
 	}
 
-	public String getKind() {
+	public String getThingkind() {
 		return thingkind;
 	}
 
-	public void setKind(String kind) {
-		this.thingkind = kind;
+	public void setThingkind(String thingkind) {
+		this.thingkind = thingkind;
 	}
 
-	public String getWhen() {
+	public String getThingwhen() {
 		return thingwhen;
 	}
 
-	public void setWhen(String when) {
-		this.thingwhen = when;
+	public void setThingwhen(String thingwhen) throws WhenFormatException {
+		if (!thingwhen.contains("/") && !thingwhen.equals("")) {
+			throw new WhenFormatException();
+		}
+		this.thingwhen = thingwhen;
 	}
 
-	public int getMany() {
+	public int getThingmany() {
 		return thingmany;
 	}
 
-	public void setMany(int many) {
-		this.thingmany = many;
+	public void setThingmany(int thingmany) {
+		this.thingmany = thingmany;
 	}
 
-	public int getMuch() {
+	public int getThingmuch() {
 		return thingmuch;
 	}
 
-	public void setMuch(int much) {
-		this.thingmuch = much;
+	public void setThingmuch(int thingmuch) {
+		this.thingmuch = thingmuch;
 	}
 	public abstract void printInfo();
 	
 	public void setKind(Scanner input) {
 		System.out.print("What kind?");
 		String thingkind = input.next();
-		this.setKind(thingkind);
+		this.setThingkind(thingkind);
 	}
 	
 	public void setWhen(Scanner input) {
-		System.out.print("When?");
-		String when = input.next();
-		this.setWhen(when);
+		String thingwhen = "";
+		while (!thingwhen.contains("/")) {
+			System.out.print("When?");
+			thingwhen = input.next();
+			try {
+				this.setThingwhen(thingwhen);
+			}
+			catch (WhenFormatException e) {
+				System.out.println("Incorrect Date Format. put your when that contains /");
+			}
+		}
 	}
 	
 	public void setMany(Scanner input) {
 		System.out.print("How many?");
-		int many = input.nextInt();
-		this.setMany(many);
+		int thingmany = input.nextInt();
+		this.setThingmany(thingmany);
 	}
 	
 	public void setMuch(Scanner input) {
 		System.out.print("How much?");
-		int much = input.nextInt();
-		this.setMuch(much);
+		int thingmuch = input.nextInt();
+		this.setThingmuch(thingmuch);
 	}
 	
 	public String getdetailString() {
@@ -112,6 +125,4 @@ public abstract class Thing implements Thinginput {
 		}
 		return sdetail;
 	}
-	
-	
 }

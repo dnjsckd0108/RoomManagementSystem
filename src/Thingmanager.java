@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import thing.ElectricThing;
@@ -15,38 +16,47 @@ public class Thingmanager {
 	}
 	
 	public void addthing() {
-		int detail = 0;
+		int detail = -1;
 		Thinginput thinginput;
-			while (detail !=1 && detail !=2 && detail !=3) {
-			System.out.println("Select Thing Detail:");
-			System.out.println("1 for Past:");
-			System.out.println("2 for Future:");
-			System.out.println("3 Electric:");
-			System.out.println("Select num for Thing detail  1 to 3:");
-			detail = input.nextInt();
-			if (detail == 1) {
-				thinginput = new PastThing(ThingDetail.Past);
-				thinginput.getuserInput(input);
-				things.add(thinginput);
-				break;
-				
+		while (detail < 1 || detail > 3) {
+			try {
+				System.out.println("Select Thing Detail:");
+				System.out.println("1 for Past:");
+				System.out.println("2 for Future:");
+				System.out.println("3 Electric:");
+				System.out.println("Select num for Thing detail  1 to 3:");
+				detail = input.nextInt();
+				if (detail == 1) {
+					thinginput = new PastThing(ThingDetail.Past);
+					thinginput.getuserInput(input);
+					things.add(thinginput);
+					break;
+					
+				}
+				else if (detail == 2) {
+					thinginput = new FutureThing(ThingDetail.Future);
+					thinginput.getuserInput(input);
+					things.add(thinginput);
+					break;
+					
+				}
+				else if (detail == 3) {
+					thinginput = new ElectricThing(ThingDetail.Electric);
+					thinginput.getuserInput(input);
+					things.add(thinginput);
+					break;
+					
+				}
+				else {
+					System.out.print("Select num for Thing detail between 1 and 3:");
+				}
 			}
-			else if (detail == 2) {
-				thinginput = new FutureThing(ThingDetail.Future);
-				thinginput.getuserInput(input);
-				things.add(thinginput);
-				break;
-				
-			}
-			else if (detail == 3) {
-				thinginput = new ElectricThing(ThingDetail.Electric);
-				thinginput.getuserInput(input);
-				things.add(thinginput);
-				break;
-				
-			}
-			else {
-				System.out.print("Select num for Thing detail between 1 and 3:");
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer beteween 1 and 3!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				detail = -1;
 			}
 		}
 	}
@@ -61,7 +71,7 @@ public class Thingmanager {
 	public int findIndex(String kind) {
 		int index = -1;
 		for (int i = 0; i<things.size(); i++) {
-			if (things.get(i).getKind().equals(kind)) {
+			if (things.get(i).getThingkind().equals(kind)) {
 				index = i;
 				break;
 			}
@@ -86,7 +96,7 @@ public class Thingmanager {
 		String kind = input.next();
 		for (int i = 0; i<things.size(); i++) {
 			Thinginput thing = things.get(i);
-			if (thing.getKind().equals(kind)) {
+			if (thing.getThingkind().equals(kind)) {
 				int num = -1;
 				while (num != 5) {
 					showEditMenu();

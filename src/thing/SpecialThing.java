@@ -2,6 +2,8 @@ package thing;
 
 import java.util.Scanner;
 
+import exception.WhenFormatException;
+
 public abstract class SpecialThing extends Thing {
 	
 	public SpecialThing(ThingDetail detail) {
@@ -9,7 +11,6 @@ public abstract class SpecialThing extends Thing {
 	}
 
 	public abstract void getuserInput(Scanner input);
-
 
 	public void printInfo() {
 		String sdetail = getdetailString();
@@ -21,15 +22,22 @@ public abstract class SpecialThing extends Thing {
 		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
 			System.out.print("Do you want buy more thing? (Y/N)");
 			answer = input.next().charAt(0);
-			if (answer == 'y' || answer == 'Y') {
-				setWhen(input);
-				break;
+			try {
+				if (answer == 'y' || answer == 'Y') {
+					System.out.println("When?");
+					String thingwhen = input.next();
+					this.setThingwhen(thingwhen);
+					break;
+				}
+				else if (answer == 'n' || answer == 'N') {
+					this.setThingwhen("");
+					break;
+				}
+				else {
+				}
 			}
-			else if (answer == 'n' || answer == 'N') {
-				this.setWhen("");
-				break;
-			}
-			else {
+			catch(WhenFormatException e) {
+				System.out.println("Incorrect Date Format. put your when that contains /");
 			}
 		}
 	}

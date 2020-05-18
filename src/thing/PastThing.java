@@ -19,4 +19,5 @@ public class PastThing extends Thing {
 		String sdetail = getdetailString();
 		System.out.println("detail:" + sdetail + "kind:" + thingkind + " when:" + thingwhen + " many:" + thingmany + " price:" + thingmuch);
 	}
+
 }
