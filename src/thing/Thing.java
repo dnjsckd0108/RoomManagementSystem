@@ -1,10 +1,14 @@
 package thing;
 
+import java.io.Serializable;
 import java.util.Scanner;
-
 import exception.WhenFormatException;
 
-public abstract class Thing implements Thinginput {
+public abstract class Thing implements Thinginput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4756164897541312804L;
 	
 	protected ThingDetail detail = ThingDetail.Past;
 	protected String thingkind;
@@ -14,6 +18,7 @@ public abstract class Thing implements Thinginput {
 	
 	public Thing() {
 	}
+	
 	public Thing(ThingDetail detail) {
 		this.detail=detail;
 	}

@@ -1,17 +1,26 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import thing.ElectricThing;
 import thing.FutureThing;
 import thing.PastThing;
 import thing.ThingDetail;
 import thing.Thinginput;
 
-public class Thingmanager {
+public class Thingmanager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5479454446011258187L;
+	
 	ArrayList<Thinginput> things = new ArrayList<Thinginput>();
-	Scanner input;
+	transient Scanner input;
 	Thingmanager(Scanner input) {
+		this.input = input;
+	}
+	
+	public void setScanner(Scanner input) {
 		this.input = input;
 	}
 	
