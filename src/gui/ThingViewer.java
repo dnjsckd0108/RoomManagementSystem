@@ -1,13 +1,17 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ThingViewer extends JFrame {
+public class ThingViewer extends JPanel {
 
-	public ThingViewer() {
+	WindowFrame frame;
+	
+	public ThingViewer(WindowFrame frame) {
+		this.frame =frame;
+
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Kind");
 		model.addColumn("When");
@@ -18,9 +22,5 @@ public class ThingViewer extends JFrame {
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
-
 }
