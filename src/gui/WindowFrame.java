@@ -1,33 +1,31 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import manager.Thingmanager;
+
 
 public class WindowFrame extends JFrame{
 	
+	Thingmanager thingmanager;
 	MenuSelection menuselection;
 	ThingAdder thingadder;
 	ThingViewer thingviewer;
-
-	public WindowFrame() {
-		this.menuselection = new MenuSelection(this);
-		this.thingadder = new ThingAdder(this);
-		this.thingviewer = new ThingViewer(this);
-		
+	
+	public WindowFrame(Thingmanager thingmanager) {
 		this.setSize(500,300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.setupPanel(menuselection);
+		this.setTitle("My Frame");
+		
+		this.thingmanager = thingmanager;
+		menuselection = new MenuSelection(this);
+		thingadder = new ThingAdder(this);
+		thingviewer = new ThingViewer(this, this.thingmanager);
+		
+		this.add(menuselection);
 		
 		this.setVisible(true);
 	}
 	
-	public void setupPanel(JPanel panel) {
-		this.getContentPane().removeAll();
-		this.getContentPane().add(panel);
-		this.revalidate();
-		this.repaint();
-	}
 	public MenuSelection getMenuselection() {
 		return menuselection;
 	}

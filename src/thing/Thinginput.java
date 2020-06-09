@@ -9,10 +9,16 @@ public interface Thinginput {
 	public String getThingkind();
 	
 	public void setThingkind(String thingkind);
+	
+	public String getThingwhen();
 
 	public void setThingwhen(String thingwhen) throws WhenFormatException;
 	
+	public int getThingmany();
+	
 	public void setThingmany(int thingmany);
+	
+	public int getThingmuch();
 	
 	public void setThingmuch(int thingmuch);
 	
